@@ -46,15 +46,15 @@ $LOGGER "$0: *** ${DOMAIN} ${BKDIR} Backup started @ $(date) ***"
 rm -rf ${SNAPSHOT_FILE}
 
 #If it's Sunday - we delete the initial metadata file and archives
-if [ "$DAY" = "5" ]; then
-	 NUM="0"
-	  mkdir -p ${LAST_MONTH}
-	   rm -rf ${LAST_MONTH}/*
-	    mv ${BACKUPDIR}/* ${LAST_MONTH}/
-	     rm -rf ${SNAPSHOT_FILE_0}
-	      rm -rf ${BACKUPDIR}/*
-      else
-	       NUM="$DAY"
+if [ $DAY = "5" ]; then
+ NUM="0"
+ mkdir -p ${LAST_MONTH}
+ rm -rf ${LAST_MONTH}/*
+ mv ${BACKUPDIR}/* ${LAST_MONTH}/
+ rm -rf ${SNAPSHOT_FILE_0}
+ rm -rf ${BACKUPDIR}/*
+else
+ NUM=$DAY
 fi
 
 #If there is initial metadata, copy it
